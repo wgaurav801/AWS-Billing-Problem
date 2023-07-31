@@ -43,12 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customer_usage.cs" />
     <Compile Include="Functions.cs" />
+    <Compile Include="monthly_bill.cs" />
     <Compile Include="ResorceUsage.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resourcetype.cs" />
+    <Compile Include="session.cs" />
+    <Compile Include="usage_month.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
