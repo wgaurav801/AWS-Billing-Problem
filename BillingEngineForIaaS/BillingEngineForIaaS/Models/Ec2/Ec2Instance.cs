@@ -98,7 +98,7 @@ namespace BillingEngine.Models.Ec2
             }
             else if (usedfrom < currentevent && currentevent == useduntil)
             {
-                DateTime start = new DateTime(monthYear.Year, UsedUntil.Month-1, 01, 00, 00, 00);
+                DateTime start = new DateTime(monthYear.Year, UsedUntil.Month, 01, 00, 00, 00);
                 DateTime end = UsedUntil;
                 return new ResourceUsageEvent(start, end);
             }

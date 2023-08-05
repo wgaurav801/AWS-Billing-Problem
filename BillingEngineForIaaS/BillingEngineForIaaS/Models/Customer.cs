@@ -32,10 +32,10 @@ namespace BillingEngine.Models
                 foreach (var rec in item.Usages)
                 {
                     int diff = rec.UsedUntil.Month - rec.UsedFrom.Month + (rec.UsedUntil.Year - rec.UsedFrom.Year) * 12;
-                    for (int i = 0; i <= diff; i++)
-                    {
                         int month = rec.UsedFrom.Month;
                         int year = rec.UsedFrom.Year;
+                    for (int i = 0; i <= diff; i++)
+                    {
                         if (!sl.checkmonthyear(month, year))
                         {
                             MonthYear Obj = new MonthYear(month, year);
@@ -47,7 +47,7 @@ namespace BillingEngine.Models
                             month = 1;
                             year++;
                         }
-                        else { month++; }   
+                        else { month++; }
                     }
                 }
             }

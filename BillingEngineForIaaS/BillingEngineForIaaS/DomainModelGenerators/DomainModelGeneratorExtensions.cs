@@ -42,18 +42,31 @@ namespace BillingEngine.DomainModelGenerators
             return false;
         }
 
-        public static bool contains(this List<Ec2Instance> list , string str)
+        public static bool contains(this List<Ec2Instance> list, string str)
         {
-            foreach(var item in list)
+            foreach (var item in list)
             {
                 if (item.InstanceId.Equals(str))
                 {
                     return true;
                 }
-                
+
             }
             return false;
         }
+
+        public static string get_hours(TimeSpan time)
+        {
+            var used_time = time.TotalSeconds;
+            var used_hours = Convert.ToInt32(Math.Floor(used_time / 3600));
+            used_time = used_time % 3600;
+            var used_minutes = Convert.ToInt32(Math.Floor(used_time / 60));
+            used_time = used_time % 60;
+            var used_second = Convert.ToInt32(Math.Floor(used_time));
+
+            return used_hours.ToString() + ":" + used_minutes.ToString() + ":" + used_second.ToString();
+        }
+
         //public static List<ParsedEc2ResourceUsageEventRecord> FindRecordsForInstance(
         //    this List<ParsedEc2ResourceUsageEventRecord> parsedEc2ResourceUsageEventRecords,
         //    string Ec2InstanceId)

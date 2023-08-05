@@ -81,11 +81,11 @@ namespace BillingEngine.Models.Billing
 
                     var TotalUsedTime = used_time;
 
-                    var totalAmount = totalhours * rec.Ec2InstanceType.CostPerHour;
-                    var totalDiscounTime = new TimeSpan(0,0,0);
+                    var totalAmount =Math.Round( totalhours * rec.Ec2InstanceType.CostPerHour,4);
+                    var totalDiscounTime = new TimeSpan(0, 0, 0);
                     var totalDiscount = 0.0;
 
-                    var Obj = new AggregatedMonthlyEc2Usage(ResourceType,cost, TotalResources, billed_time, TotalUsedTime, totalDiscounTime, totalAmount,totalDiscount);
+                    var Obj = new AggregatedMonthlyEc2Usage(ResourceType, cost, TotalResources, billed_time, TotalUsedTime, totalDiscounTime, totalAmount, totalDiscount);
                     list.Add(Obj);
                 }
 
@@ -103,10 +103,15 @@ namespace BillingEngine.Models.Billing
             // and then call monthlyEc2InstanceUsage.ApplyDiscount(discountedHours)
         }
 
-        public double GetTotalAmount()
+        public double GetTotalAmount(List<AggregatedMonthlyEc2Usage> list)
         {
-            
-            return 0.0;
+            double totalAmount = 0.0;
+            foreach(var rec in list)
+            {
+                totalAmount += rec.TotalAmount;
+            }
+
+            return totalAmount;
         }
 
         public double GetTotalDiscount()
@@ -114,10 +119,10 @@ namespace BillingEngine.Models.Billing
             throw new System.NotImplementedException();
         }
 
-        public double GetAmountToBePaid()
-        {
-            return GetTotalAmount() - GetTotalDiscount();
-        }
+        //public double GetAmountToBePaid()
+        //{
+        //    return GetTotalAmount() - GetTotalDiscount();
+        //}
 
         public List<MonthlyEc2InstanceUsage> GetFreeTierEligibleInstanceUsagesOfType(Ec2.OperatingSystem operatingSystem)
         {

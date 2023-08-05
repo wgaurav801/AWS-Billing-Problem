@@ -2,12 +2,12 @@ namespace BillingEngine.Models.Billing
 {
     public class AggregatedMonthlyEc2Usage
     {
-        public string ResourceType { get;  }
-        public double cost { get;  }
-        public int TotalResources { get;  }
+        public string ResourceType { get; }
+        public double cost { get; }
+        public int TotalResources { get; }
 
-        public TimeSpan TotalBilledTime { get;  }
-        public TimeSpan TotalUsedTime { get;  }
+        public TimeSpan TotalBilledTime { get; }
+        public TimeSpan TotalUsedTime { get; }
         public TimeSpan TotalDiscountedTime { get; }
 
         public double TotalAmount { get; }
@@ -19,8 +19,8 @@ namespace BillingEngine.Models.Billing
         }
 
         public AggregatedMonthlyEc2Usage() { }
-        public AggregatedMonthlyEc2Usage(string ResourceType,double cost ,int TotalResources, TimeSpan TotalBilledTime, TimeSpan TotalUsedTime,
-                                         TimeSpan TotalDiscountedTime, double TotalAmount, double TotalDiscount) 
+        public AggregatedMonthlyEc2Usage(string ResourceType, double cost, int TotalResources, TimeSpan TotalBilledTime, TimeSpan TotalUsedTime,
+                                         TimeSpan TotalDiscountedTime, double TotalAmount, double TotalDiscount)
         {
             this.ResourceType = ResourceType;
             this.cost = cost;
@@ -28,8 +28,8 @@ namespace BillingEngine.Models.Billing
             this.TotalBilledTime = TotalBilledTime;
             this.TotalUsedTime = TotalUsedTime;
             this.TotalDiscountedTime = TotalDiscountedTime;
-            this.TotalAmount= TotalAmount;
-            this.TotalDiscount= TotalDiscount;
+            this.TotalAmount = TotalAmount;
+            this.TotalDiscount = TotalDiscount;
         }
 
     }

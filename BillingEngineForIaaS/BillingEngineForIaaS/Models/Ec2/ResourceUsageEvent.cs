@@ -20,17 +20,20 @@ namespace BillingEngine.Models.Ec2
 
         public int GetBillableHours()
         {
-            var usedHours = UsedUntil.Subtract(UsedFrom).TotalHours;
+            var usedHours = (UsedUntil - UsedFrom).TotalHours;
             return Convert.ToInt32(Math.Ceiling(usedHours));
         }
 
         public TimeSpan GetUsedTime()
         {
             var used_time = UsedUntil.Subtract(UsedFrom).TotalSeconds;
-            var used_hours = Convert.ToInt32(used_time / 3600);
+            var used_hours = Convert.ToInt32(Math.Floor(used_time / 3600));
             used_time = used_time % 3600;
-            var used_minutes = Convert.ToInt32(used_time / 60);
-            var used_second = Convert.ToInt32(used_time / 60);
+            var used_minutes = Convert.ToInt32(Math.Floor(used_time / 60));
+            used_time= used_time % 60;
+            var used_second = Convert.ToInt32(Math.Floor(used_time));
+            
+
 
             return new TimeSpan(used_hours, used_minutes, used_second);
         }

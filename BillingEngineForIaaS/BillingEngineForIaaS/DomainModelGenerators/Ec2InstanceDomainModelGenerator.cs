@@ -19,7 +19,8 @@ namespace BillingEngine.DomainModelGenerators
                             record => generateEc2InstanceModel(record.Ec2InstanceId, parsedEc2ResourceUsageTypeEventRecords
                             , ec2InstanceTypes.FirstOrDefault(rec => record.Ec2InstanceType == rec.InstanceType))).ToList();
             var list = new List<Ec2Instance>();
-            foreach ( var record in list1 ) {
+            foreach (var record in list1)
+            {
                 if (!list.contains(record.InstanceId))
                 {
                     list.Add(record);

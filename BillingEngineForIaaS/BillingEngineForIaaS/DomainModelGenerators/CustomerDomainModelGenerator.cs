@@ -24,11 +24,10 @@ namespace BillingEngine.DomainModelGenerators
         {
             List<Ec2InstanceType> ec2InstanceTypes = _ec2InstanceTypeDomainModelGenerator
                 .GenerateEc2InstanceTypes(parsedEc2InstanceTypes);
-            Console.WriteLine("ec2instnce count " + ec2InstanceTypes.Count );
 
             //Generate Ec2Region instances by defining Ec2RegionDomainModelGenerator
             List<Ec2Region> ec2Regions = new List<Ec2Region>();
- 
+
 
             return parsedCustomerRecords.Select(parsedCustomerRecord =>
                     GenerateCustomerModel(
@@ -51,9 +50,8 @@ namespace BillingEngine.DomainModelGenerators
                                                                                   ec2ResourceUsageEventsForCustomer,
                                                                                   ec2InstanceTypes
                                                                                   );
-            
-            string customerId = (parsedCustomerRecord.CustomerId.Split('-'))[0]+ (parsedCustomerRecord.CustomerId.Split('-'))[1];
-            Console.WriteLine(customerId);
+
+            string customerId = (parsedCustomerRecord.CustomerId.Split('-'))[0] + (parsedCustomerRecord.CustomerId.Split('-'))[1];
             Customer cs = new Customer(customerId, parsedCustomerRecord.CustomerName, Ec2Instancelist);
 
             return cs;

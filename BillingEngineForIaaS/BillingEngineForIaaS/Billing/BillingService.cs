@@ -47,9 +47,6 @@ namespace BillingEngine.Billing
                 parsedEc2InstanceTypes,
                 parsedEc2Regions,
                 parsedEc2ResourceUsageEventRecords);
-            //var SC = customers
-            //    .SelectMany(_customerLevelMonthlyBillingService.GenerateMonthlyBillsForCustomer)
-            //    .ToList();
 
             return customers
                 .SelectMany(_customerLevelMonthlyBillingService.GenerateMonthlyBillsForCustomer)
