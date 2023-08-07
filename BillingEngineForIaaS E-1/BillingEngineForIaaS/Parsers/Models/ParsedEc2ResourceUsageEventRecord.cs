@@ -1,3 +1,4 @@
+using BillingEngine.Models.Ec2;
 using CsvHelper.Configuration.Attributes;
 
 namespace BillingEngine.Parsers.Models
@@ -19,5 +20,11 @@ namespace BillingEngine.Parsers.Models
 
         [Name("Used Until")]
         public DateTime UsedUntil { get; set; }
+
+        [Name("Region")]
+        public string Region { get; set; }
+
+        [Name("OS")]
+        public string Os { get; set; }
     }
 }

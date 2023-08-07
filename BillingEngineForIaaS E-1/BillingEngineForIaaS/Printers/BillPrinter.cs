@@ -21,7 +21,7 @@ namespace BillingEngine.Printers
             double total_bill = monthlyBill.GetTotalAmount(bill1) ;
             if (total_bill == 0) { return null; }
             string ABRmonth = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(monthlyBill.MonthYear.Month).ToUpper();
-            string fullmonth = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(monthlyBill.MonthYear.Month).ToUpper();
+            string fullmonth = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(monthlyBill.MonthYear.Month); ;
 
             string FileName = monthlyBill.CustomerId + "_" + ABRmonth + "-" + monthlyBill.MonthYear.Year;
 
@@ -31,13 +31,14 @@ namespace BillingEngine.Printers
             csv.AppendLine(monthlyBill.CustomerName);
             csv.AppendLine(string.Format("Bill for month of {0} {1}", fullmonth, monthlyBill.MonthYear.Year));
             csv.AppendLine(string.Format("Total Amount: ${0}", total_bill));
-            csv.AppendLine("Resource Type,Total Resources,Total Used Time (HH:mm:ss),Total Billed Time (HH:mm:ss),Rate (per hour),Total Amount");
+            csv.AppendLine("Resource Type,Region,Total Resources,Total Used Time (HH:mm:ss),Total Billed Time (HH:mm:ss),Rate (per hour),Total Amount");
 
             foreach (var rec in bill1)
             {
                 if(!(rec.TotalAmount==0))
-                csv.AppendLine(string.Format("{0},{1},{2},{3},${4},${5}",
+                csv.AppendLine(string.Format("{0},{1},{2},{3},{4},${5},${6}",
                     rec.ResourceType,
+                    rec.Region,
                     rec.TotalResources,
                     DomainModelGeneratorExtensions.get_hours(rec.TotalUsedTime),
                     DomainModelGeneratorExtensions.get_hours(rec.TotalBilledTime),

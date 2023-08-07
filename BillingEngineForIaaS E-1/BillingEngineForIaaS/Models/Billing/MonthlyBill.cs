@@ -33,7 +33,8 @@ namespace BillingEngine.Models.Billing
             foreach (MonthlyEc2InstanceUsage rec in MonthlyEc2InstanceUsages)
             {
                 string str = rec.Ec2InstanceType.InstanceType;
-                if (!list.has_element(str))
+                string str1 = rec.Ec2InstanceType.Region;
+                if (!list.has_element(str,str1))
                 {
 
 
@@ -41,6 +42,7 @@ namespace BillingEngine.Models.Billing
 
                     var ResourceType = rec.Ec2InstanceType.InstanceType;
                     var cost = (rec.Ec2InstanceType.CostPerHour);
+                    var Region = rec.Ec2InstanceType.Region;
 
                     HashSet<string> fields = new HashSet<string>();
                     foreach (MonthlyEc2InstanceUsage field in MonthlyEc2InstanceUsages)
@@ -85,12 +87,12 @@ namespace BillingEngine.Models.Billing
                     var totalDiscounTime = new TimeSpan(0, 0, 0);
                     var totalDiscount = 0.0;
 
-                    var Obj = new AggregatedMonthlyEc2Usage(ResourceType, cost, TotalResources, billed_time, TotalUsedTime, totalDiscounTime, totalAmount, totalDiscount);
+                    var Obj = new AggregatedMonthlyEc2Usage(ResourceType, cost, TotalResources, billed_time, TotalUsedTime, totalDiscounTime, totalAmount,Region, totalDiscount);
                     list.Add(Obj);
                 }
 
             }
-
+            
 
             return list;
             //Using MonthlyEc2InstanceUsages, compute List<AggregatedMonthlyEc2Usage>

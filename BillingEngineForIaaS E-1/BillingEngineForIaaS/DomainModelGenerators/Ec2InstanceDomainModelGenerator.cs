@@ -16,8 +16,8 @@ namespace BillingEngine.DomainModelGenerators
             List<Ec2InstanceType> ec2InstanceTypes)
         {
             var list1 = parsedEc2ResourceUsageTypeEventRecords.Select(
-                            record => generateEc2InstanceModel(record.Ec2InstanceId, parsedEc2ResourceUsageTypeEventRecords
-                            , ec2InstanceTypes.FirstOrDefault(rec => record.Ec2InstanceType == rec.InstanceType))).ToList();
+                            record => generateEc2InstanceModel(record.Ec2InstanceId,parsedEc2ResourceUsageTypeEventRecords
+                            , ec2InstanceTypes.FirstOrDefault(rec => ((record.Ec2InstanceType == rec.InstanceType) && (record.Region==rec.Region))))).ToList();
             var list = new List<Ec2Instance>();
             foreach (var record in list1)
             {
@@ -36,7 +36,7 @@ namespace BillingEngine.DomainModelGenerators
         {
             var resourceUsageEventList = _resourceUsageEvent.generateUsageList(parsedEc2ResourceUsageTypeEventRecords, Ec2InstanceId);
 
-            Ec2Instance ec2Instance = new Ec2Instance(Ec2InstanceId, ec2InstanceType, resourceUsageEventList);
+            Ec2Instance ec2Instance = new Ec2Instance(Ec2InstanceId, ec2InstanceType,ec2InstanceType.Region ,resourceUsageEventList);
             return ec2Instance;
         }
     }

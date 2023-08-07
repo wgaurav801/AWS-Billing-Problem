@@ -29,6 +29,7 @@ namespace BillingEngine.DomainModelGenerators
             List<Ec2Region> ec2Regions = new List<Ec2Region>();
 
 
+            
             return parsedCustomerRecords.Select(parsedCustomerRecord =>
                     GenerateCustomerModel(
                         parsedCustomerRecord,
@@ -36,7 +37,7 @@ namespace BillingEngine.DomainModelGenerators
                         ec2InstanceTypes,
                         ec2Regions)
                 )
-                .ToList(); ;
+                .ToList();
         }
 
         private Customer GenerateCustomerModel(

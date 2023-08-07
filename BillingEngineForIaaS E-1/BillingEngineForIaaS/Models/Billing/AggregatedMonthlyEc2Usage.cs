@@ -3,6 +3,7 @@ namespace BillingEngine.Models.Billing
     public class AggregatedMonthlyEc2Usage
     {
         public string ResourceType { get; }
+        public string Region { get; }
         public double cost { get; }
         public int TotalResources { get; }
 
@@ -20,7 +21,7 @@ namespace BillingEngine.Models.Billing
 
         public AggregatedMonthlyEc2Usage() { }
         public AggregatedMonthlyEc2Usage(string ResourceType, double cost, int TotalResources, TimeSpan TotalBilledTime, TimeSpan TotalUsedTime,
-                                         TimeSpan TotalDiscountedTime, double TotalAmount, double TotalDiscount)
+                                         TimeSpan TotalDiscountedTime, double TotalAmount,string Region, double TotalDiscount)
         {
             this.ResourceType = ResourceType;
             this.cost = cost;
@@ -29,6 +30,7 @@ namespace BillingEngine.Models.Billing
             this.TotalUsedTime = TotalUsedTime;
             this.TotalDiscountedTime = TotalDiscountedTime;
             this.TotalAmount = TotalAmount;
+            this.Region = Region;
             this.TotalDiscount = TotalDiscount;
         }
 

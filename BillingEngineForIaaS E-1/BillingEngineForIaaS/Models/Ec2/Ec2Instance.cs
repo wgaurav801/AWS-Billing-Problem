@@ -8,12 +8,15 @@ namespace BillingEngine.Models.Ec2
 
         public Ec2InstanceType InstanceType { get; }
 
+        public string Region { get; }
+
         public List<ResourceUsageEvent> Usages { get; }
 
-        public Ec2Instance(string instanceId, Ec2InstanceType instanceType, List<ResourceUsageEvent> usages)
+        public Ec2Instance(string instanceId, Ec2InstanceType instanceType, string Region, List<ResourceUsageEvent> usages)
         {
             InstanceId = instanceId;
             InstanceType = instanceType;
+            this.Region = Region;
             Usages = usages;
         }
 

@@ -11,9 +11,9 @@ namespace BillingEngine
             BillPrinter billPrinter = new BillPrinter();
 
             var monthlyBills = billingService.GenerateMonthlyBills(
-                "C:/Users/wgaur/Desktop/TestCases/TestCases/Case4/Input/Customer.csv",
-                "C:/Users/wgaur/Desktop/TestCases/TestCases/Case4/Input/AWSResourceTypes.csv",
-                "C:/Users/wgaur/Desktop/TestCases/TestCases/Case4/Input/AWSCustomerUsage.csv",
+                "C:/Users/wgaur/Desktop/Test cases1/input/Customer.csv",
+                "C:/Users/wgaur/Desktop/Test cases1/input/AWSResourceTypes.csv",
+                "C:/Users/wgaur/Desktop/Test cases1/input/AWSOnDemandResourceUsage.csv",
                 "C:/Users/wgaur/Desktop/Test cases1/input/Region.csv"
             );
             //---------------- all work is done ----till here-----------------
@@ -23,4 +23,3 @@ namespace BillingEngine
     }
 }
 
-//"C:\Users\wgaur\Desktop\Test cases1\input\Customer.csv"

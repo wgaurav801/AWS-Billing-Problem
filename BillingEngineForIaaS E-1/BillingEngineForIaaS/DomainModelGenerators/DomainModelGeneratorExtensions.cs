@@ -30,11 +30,11 @@ namespace BillingEngine.DomainModelGenerators
             return false;
         }
 
-        public static bool has_element(this List<AggregatedMonthlyEc2Usage> list, string str)
+        public static bool has_element(this List<AggregatedMonthlyEc2Usage> list, string type,string region)
         {
             foreach (var item in list)
             {
-                if (item.ResourceType == str)
+                if ((item.ResourceType == type)&&(item.Region  == region))
                 {
                     return true;
                 }
