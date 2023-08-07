@@ -47,7 +47,12 @@ namespace BillingEngine.Models.Billing
                     HashSet<string> fields = new HashSet<string>();
                     foreach (MonthlyEc2InstanceUsage field in MonthlyEc2InstanceUsages)
                     {
-                        if (field.Ec2InstanceType.InstanceType == rec.Ec2InstanceType.InstanceType)
+                        string a1 = field.Ec2InstanceType.InstanceType;
+                        string a2 = rec.Ec2InstanceType.InstanceType;
+                        string a3 = field.Ec2InstanceType.Region;
+                        string a4= rec.Ec2InstanceType.Region;
+
+                        if ((a1==a2)&&(a3==a4))
                         {
                             fields.Add(field.Ec2InstanceId);
                         }
@@ -59,7 +64,11 @@ namespace BillingEngine.Models.Billing
                     var totalhours = 0;
                     foreach (MonthlyEc2InstanceUsage record in MonthlyEc2InstanceUsages)
                     {
-                        if (record.Ec2InstanceType.InstanceType == rec.Ec2InstanceType.InstanceType)
+                        string a1 = record.Ec2InstanceType.InstanceType;
+                        string a2 = rec.Ec2InstanceType.InstanceType;
+                        string a3 = record.Ec2InstanceType.Region;
+                        string a4 = rec.Ec2InstanceType.Region;
+                        if ((a1==a2)&&(a3==a4))
                         {
                             var temp = record.GetTotalBillableHours();
                             totalhours = totalhours + temp;
@@ -71,7 +80,7 @@ namespace BillingEngine.Models.Billing
                     var used_time = new TimeSpan(0, 0, 0);
                     foreach (MonthlyEc2InstanceUsage record in MonthlyEc2InstanceUsages)
                     {
-                        if (record.Ec2InstanceType.InstanceType == rec.Ec2InstanceType.InstanceType)
+                        if ((record.Ec2InstanceType.InstanceType == rec.Ec2InstanceType.InstanceType)&&(record.Ec2InstanceType.Region == rec.Ec2InstanceType.Region))
                         {
                             foreach (ResourceUsageEvent time in record.Usages)
                             {
