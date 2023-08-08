@@ -10,17 +10,20 @@ namespace BillingEngine.Models.Billing
 
         public List<ResourceUsageEvent> Usages { get; }
 
+        public string OS;
+
         public int DiscountedHours { get; private set; }
 
         public MonthlyEc2InstanceUsage()
         {
             Usages = new List<ResourceUsageEvent>();
         }
-        public MonthlyEc2InstanceUsage(string ec2InstanceId, Ec2InstanceType ec2InstanceType)
+        public MonthlyEc2InstanceUsage(string ec2InstanceId, Ec2InstanceType ec2InstanceType, string OS)
         {
             Ec2InstanceId = ec2InstanceId;
             Ec2InstanceType = ec2InstanceType;
             Usages = new List<ResourceUsageEvent>();
+            this.OS = OS;
         }
 
 

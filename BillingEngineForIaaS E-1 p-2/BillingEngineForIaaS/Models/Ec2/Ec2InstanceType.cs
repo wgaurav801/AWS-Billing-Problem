@@ -5,22 +5,24 @@ namespace BillingEngine.Models.Ec2
         public string InstanceType { get; }
         public double CostPerHour { get; }
         public string Region { get; }
-        public OperatingSystem OperatingSystem { get; }
+        // public string OperatingSystem { get; set; }
         public BillingType BillingType { get; }
         public bool IsFreeTierEligible { get; }
         Ec2InstanceType() { }
 
 
         public Ec2InstanceType(string InstanceType,
-                        double CostPerHour, string Region
-                        )
+                        double CostPerHour, string Region,
+                        bool val)
         {
             this.InstanceType = InstanceType;
             this.CostPerHour = CostPerHour;
             this.Region = Region;
             BillingType = BillingType.OnDemand;
-            this.IsFreeTierEligible = false;
+            IsFreeTierEligible = val;
 
         }
+
+
     }
 }

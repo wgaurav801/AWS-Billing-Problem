@@ -10,22 +10,26 @@ namespace BillingEngine.Models.Ec2
 
         public string Region { get; }
 
-
-
         public List<ResourceUsageEvent> Usages { get; }
+        public string OS;
 
-        public Ec2Instance(string instanceId, Ec2InstanceType instanceType, string Region, List<ResourceUsageEvent> usages)
+        public Ec2Instance(string instanceId, Ec2InstanceType instanceType, string Region, List<ResourceUsageEvent> usages, string OS)
         {
             InstanceId = instanceId;
             InstanceType = instanceType;
             this.Region = Region;
             Usages = usages;
+            this.OS = OS;
         }
+
+
+
+
 
         public MonthlyEc2InstanceUsage GetMonthlyEc2InstanceUsageForMonth(MonthYear monthYear)
         {
 
-            MonthlyEc2InstanceUsage Obj = new MonthlyEc2InstanceUsage(InstanceId, InstanceType);
+            MonthlyEc2InstanceUsage Obj = new MonthlyEc2InstanceUsage(InstanceId, InstanceType,OS);
             var eventlist = new List<ResourceUsageEvent>();
             foreach (var e in Usages)
             {

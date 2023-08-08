@@ -14,6 +14,8 @@ namespace BillingEngine.Models.Billing
         public double TotalAmount { get; }
         public double TotalDiscount { get; }
 
+        public double ActualAmount { get; }
+
         public double GetActualAmountToBePaid()
         {
             return TotalAmount - TotalDiscount;
@@ -21,17 +23,17 @@ namespace BillingEngine.Models.Billing
 
         public AggregatedMonthlyEc2Usage() { }
         public AggregatedMonthlyEc2Usage(string ResourceType, double cost, int TotalResources, TimeSpan TotalBilledTime, TimeSpan TotalUsedTime,
-                                         TimeSpan TotalDiscountedTime, double TotalAmount,string Region, double TotalDiscount)
+                                          double TotalAmount,double actualAmount, double TotalDiscount,string Region)
         {
             this.ResourceType = ResourceType;
             this.cost = cost;
             this.TotalResources = TotalResources;
             this.TotalBilledTime = TotalBilledTime;
             this.TotalUsedTime = TotalUsedTime;
-            this.TotalDiscountedTime = TotalDiscountedTime;
             this.TotalAmount = TotalAmount;
-            this.Region = Region;
+            this.ActualAmount = actualAmount;
             this.TotalDiscount = TotalDiscount;
+            this.Region = Region;
         }
 
     }

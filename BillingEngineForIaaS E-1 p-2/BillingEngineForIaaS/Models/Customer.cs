@@ -11,7 +11,7 @@ namespace BillingEngine.Models
 
         public List<Ec2Instance> Ec2Instances { get; }
 
-        public DateTime startdate;
+        //public DateTime startdate;
 
         public Customer()
         {
@@ -23,6 +23,7 @@ namespace BillingEngine.Models
             CustomerId = customerId;
             CustomerName = customerName;
             Ec2Instances = ec2Instances;
+            //startdate = GetJoiningDate();
         }
 
         public List<MonthYear> GetDistinctMonthYears()

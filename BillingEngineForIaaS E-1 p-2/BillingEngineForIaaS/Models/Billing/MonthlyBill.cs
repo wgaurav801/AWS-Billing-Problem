@@ -74,7 +74,24 @@ namespace BillingEngine.Models.Billing
                             totalhours = totalhours + temp;
                         }
                     }
+
                     var billed_time = new TimeSpan(totalhours, 0, 0);
+
+                    var actualbilled_hours = 0;
+
+                    foreach(MonthlyEc2InstanceUsage record in MonthlyEc2InstanceUsages)
+                    {
+                        string a1 = record.Ec2InstanceType.InstanceType;
+                        string a2 = rec.Ec2InstanceType.InstanceType;
+                        string a3 = record.Ec2InstanceType.Region;
+                        string a4 = rec.Ec2InstanceType.Region;
+                        if ((a1 == a2) && (a3 == a4))
+                        {
+                            var temp = record.GetTotalBillableHours()-record.DiscountedHours;
+                            actualbilled_hours = actualbilled_hours + temp;
+                        }
+                    }
+
                     //agregate.TotalBilledTime = billed_time;
 
                     var used_time = new TimeSpan(0, 0, 0);
@@ -92,11 +109,12 @@ namespace BillingEngine.Models.Billing
 
                     var TotalUsedTime = used_time;
 
-                    var totalAmount =Math.Round( totalhours * rec.Ec2InstanceType.CostPerHour,4);
+                    var totalAmount = Math.Round(totalhours * rec.Ec2InstanceType.CostPerHour, 4);
+                    var actual_amount= Math.Round(actualbilled_hours*rec.Ec2InstanceType.CostPerHour,4);
+                    var totalDiscount = totalAmount -actual_amount;
                     var totalDiscounTime = new TimeSpan(0, 0, 0);
-                    var totalDiscount = 0.0;
 
-                    var Obj = new AggregatedMonthlyEc2Usage(ResourceType, cost, TotalResources, billed_time, TotalUsedTime, totalDiscounTime, totalAmount,Region, totalDiscount);
+                    var Obj = new AggregatedMonthlyEc2Usage(ResourceType, cost, TotalResources, billed_time, TotalUsedTime, totalAmount,actual_amount,totalDiscount,Region);
                     list.Add(Obj);
                 }
 
@@ -125,6 +143,17 @@ namespace BillingEngine.Models.Billing
             return totalAmount;
         }
 
+        public double GetActualAmount(List<AggregatedMonthlyEc2Usage> list)
+        {
+            double actualAmount = 0.0;
+            foreach (var rec in list)
+            {
+                actualAmount += rec.ActualAmount;
+            }
+
+            return actualAmount;
+        }
+
         public double GetTotalDiscount()
         {
             throw new System.NotImplementedException();
@@ -135,11 +164,16 @@ namespace BillingEngine.Models.Billing
         //    return GetTotalAmount() - GetTotalDiscount();
         //}
 
-        public List<MonthlyEc2InstanceUsage> GetFreeTierEligibleInstanceUsagesOfType(Ec2.OperatingSystem operatingSystem)
+        public List<MonthlyEc2InstanceUsage> GetFreeTierEligibleInstanceUsagesOfType(string operatingSystem)
         {
+
+            var sc = MonthlyEc2InstanceUsages
+                .Where(instanceUsage => instanceUsage.Ec2InstanceType.IsFreeTierEligible)
+                .Where(instanceUsage => instanceUsage.OS==operatingSystem)
+                .ToList();
             return MonthlyEc2InstanceUsages
                 .Where(instanceUsage => instanceUsage.Ec2InstanceType.IsFreeTierEligible)
-                .Where(instanceUsage => instanceUsage.Ec2InstanceType.OperatingSystem == operatingSystem)
+                .Where(instanceUsage => instanceUsage.OS==operatingSystem)
                 .ToList();
         }
     }

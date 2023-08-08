@@ -25,6 +25,6 @@ namespace BillingEngine.Parsers.Models
         public string Region { get; set; }
 
         [Name("OS")]
-        public string Os { get; set; }
+        public string OS { get; set; }
     }
 }

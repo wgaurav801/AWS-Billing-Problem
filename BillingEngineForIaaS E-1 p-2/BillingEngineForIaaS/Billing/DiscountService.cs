@@ -14,8 +14,13 @@ namespace BillingEngine.Billing
         {
             if (monthlyBill.MonthYear.IsLesserThan(customer.GetJoiningDate().AddYears(1)))
             {
-                var freeTierEligibleLinuxInstances = monthlyBill.GetFreeTierEligibleInstanceUsagesOfType(Linux);
-                var freeTierEligibleWindowsInstances = monthlyBill.GetFreeTierEligibleInstanceUsagesOfType(Windows);
+                
+                //if (monthlyBill.CustomerId.Equals("CUST005")) 
+                //{
+                //    bool xyz = false;
+                //}
+                var freeTierEligibleLinuxInstances = monthlyBill.GetFreeTierEligibleInstanceUsagesOfType("Linux");
+                var freeTierEligibleWindowsInstances = monthlyBill.GetFreeTierEligibleInstanceUsagesOfType("Windows");
 
                 DistributeFreeTierEligibleHoursAcrossInstances(
                     freeTierEligibleLinuxInstances,
@@ -42,7 +47,6 @@ namespace BillingEngine.Billing
                 );
 
                 freeTierEligibleInstance.ApplyDiscount(discountedHours);
-
                 remainingFreeTierEligibleHours -= discountedHours;
             }
         }

@@ -13,16 +13,12 @@ namespace BillingEngineForIaaS.DomainModelGenerators
 
         public List<Ec2Region> GenerateEc2Region(List<ParsedEc2Region> parsedEc2Regions)
         {
-            var sc = parsedEc2Regions.Select(rec => rec.generateEc2region())
-
-            return new List<Ec2Region>();
+            return parsedEc2Regions.Select(rec => generateEc2region(rec)).ToList();
         }
 
         private Ec2Region generateEc2region(ParsedEc2Region region)
         {
-            Ec2Region ec2region;
-
-            return ec2region;
+            return new Ec2Region(region.RegionName, region.FreeTierEligibleInstanceType);
         }
     }
 

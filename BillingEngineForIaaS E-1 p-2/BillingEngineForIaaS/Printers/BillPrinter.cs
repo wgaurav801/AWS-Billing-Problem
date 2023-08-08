@@ -30,20 +30,23 @@ namespace BillingEngine.Printers
 
             csv.AppendLine(monthlyBill.CustomerName);
             csv.AppendLine(string.Format("Bill for month of {0} {1}", fullmonth, monthlyBill.MonthYear.Year));
-            csv.AppendLine(string.Format("Total Amount: ${0}", total_bill));
-            csv.AppendLine("Resource Type,Region,Total Resources,Total Used Time (HH:mm:ss),Total Billed Time (HH:mm:ss),Rate (per hour),Total Amount");
+            csv.AppendLine(string.Format("Total Amount: ${0}", monthlyBill.GetActualAmount(bill1)));
+            csv.AppendLine(string.Format("Total Discount: ${0}",total_bill- monthlyBill.GetActualAmount(bill1)));
+            csv.AppendLine("Region,Resource Type,Total Resources,Total Used Time (HH:mm:ss),Total Billed Time (HH:mm:ss),Rate (per hour),Total Amount,Discount,Actual amount");
 
             foreach (var rec in bill1)
             {
                 if(!(rec.TotalAmount==0))
-                csv.AppendLine(string.Format("{0},{1},{2},{3},{4},${5},${6}",
-                    rec.ResourceType,
+                csv.AppendLine(string.Format("{0},{1},{2},{3},{4},${5},${6},${7},${8}",
                     rec.Region,
+                    rec.ResourceType,
                     rec.TotalResources,
                     DomainModelGeneratorExtensions.get_hours(rec.TotalUsedTime),
                     DomainModelGeneratorExtensions.get_hours(rec.TotalBilledTime),
                     rec.cost,
-                    Math.Round(rec.TotalAmount, 4)
+                    Math.Round(rec.TotalAmount, 4),
+                    rec.TotalDiscount,
+                    rec.ActualAmount
                     ));
             }
             File.WriteAllText(csvPath, csv.ToString());
