@@ -1,4 +1,5 @@
 using BillingEngine.Parsers.Models;
+using BillingEngineForIaaS.Parsers.Models;
 
 namespace BillingEngine.Models.Ec2
 {
@@ -30,9 +31,9 @@ namespace BillingEngine.Models.Ec2
             var used_hours = Convert.ToInt32(Math.Floor(used_time / 3600));
             used_time = used_time % 3600;
             var used_minutes = Convert.ToInt32(Math.Floor(used_time / 60));
-            used_time= used_time % 60;
+            used_time = used_time % 60;
             var used_second = Convert.ToInt32(Math.Floor(used_time));
-            
+
 
 
             return new TimeSpan(used_hours, used_minutes, used_second);
@@ -40,21 +41,29 @@ namespace BillingEngine.Models.Ec2
 
 
         public List<ResourceUsageEvent> generateUsageList(List<ParsedEc2ResourceUsageEventRecord> parsedEc2ResourceUsageTypeEventRecords
-                                                          , string InstanceId,string OS)
+                                                          , string InstanceId, string OS)
         {
-            var rc = parsedEc2ResourceUsageTypeEventRecords
+            return parsedEc2ResourceUsageTypeEventRecords
                 .Where(record => record.Ec2InstanceId == InstanceId)
                 .Where(record => record.OS == OS)
                 .Select(rec => generateUsage(rec.UsedFrom, rec.UsedUntil))
-                .ToList();
-            return rc;
+                .ToList(); ;
+        }
+
+        public List<ResourceUsageEvent> generateUsageList(List<ParsedEc2ResourceUsageReservedEventRecord> parsedEc2ResourceUsageTypeEventRecords
+                                                          , string InstanceId, string OS)
+        {
+            return  parsedEc2ResourceUsageTypeEventRecords
+                .Where(record => record.Ec2InstanceId == InstanceId)
+                .Where(record => record.OS == OS)
+                .Select(rec => generateUsage(rec.UsedFrom, rec.UsedUntil))
+                .ToList(); ;
         }
 
 
         private ResourceUsageEvent generateUsage(DateTime UsedFrom, DateTime UsedUntil)
         {
-            ResourceUsageEvent rc = new ResourceUsageEvent(UsedFrom, UsedUntil);
-            return rc;
+            return new ResourceUsageEvent(UsedFrom, UsedUntil); ;
         }
 
     }

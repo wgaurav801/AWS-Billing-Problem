@@ -30,7 +30,7 @@ namespace BillingEngine.Printers
 
             csv.AppendLine(monthlyBill.CustomerName);
             csv.AppendLine(string.Format("Bill for month of {0} {1}", fullmonth, monthlyBill.MonthYear.Year));
-            csv.AppendLine(string.Format("Total Amount: ${0}", monthlyBill.GetActualAmount(bill1)));
+            csv.AppendLine(string.Format("Total Amount: ${0}", total_bill));
             csv.AppendLine(string.Format("Total Discount: ${0}",total_bill- monthlyBill.GetActualAmount(bill1)));
             csv.AppendLine("Region,Resource Type,Total Resources,Total Used Time (HH:mm:ss),Total Billed Time (HH:mm:ss),Rate (per hour),Total Amount,Discount,Actual amount");
 

@@ -2,6 +2,7 @@ using BillingEngine.Models;
 using BillingEngine.Models.Billing;
 using BillingEngine.Models.Ec2;
 using BillingEngine.Parsers.Models;
+using BillingEngineForIaaS.Parsers.Models;
 
 namespace BillingEngine.DomainModelGenerators
 {
@@ -18,6 +19,16 @@ namespace BillingEngine.DomainModelGenerators
                 .ToList();
         }
 
+        public static List<ParsedEc2ResourceUsageReservedEventRecord> FindRecordsForCustomer(
+            this List<ParsedEc2ResourceUsageReservedEventRecord> parsedEc2ResourceUsageReservedEventRecords,
+            string customerId)
+        {
+            customerId = customerId.Split('-')[0] + customerId.Split('-')[1];
+            return parsedEc2ResourceUsageReservedEventRecords
+                .Where(record => record.CustomerId == customerId)
+                .ToList();
+        }
+
         public static bool checkmonthyear(this List<MonthYear> monthYears, int month, int year)
         {
             foreach (MonthYear monthYear in monthYears)
@@ -30,11 +41,11 @@ namespace BillingEngine.DomainModelGenerators
             return false;
         }
 
-        public static bool has_element(this List<AggregatedMonthlyEc2Usage> list, string type,string region)
+        public static bool has_element(this List<AggregatedMonthlyEc2Usage> list, string type, string region)
         {
             foreach (var item in list)
             {
-                if ((item.ResourceType == type)&&(item.Region  == region))
+                if ((item.ResourceType == type) && (item.Region == region))
                 {
                     return true;
                 }
@@ -42,11 +53,11 @@ namespace BillingEngine.DomainModelGenerators
             return false;
         }
 
-        public static bool contains(this List<Ec2Instance> list, string str,string OS)
+        public static bool contains(this List<Ec2Instance> list, string str, string OS)
         {
             foreach (var item in list)
             {
-                if (item.InstanceId.Equals(str) && item.OS==OS)
+                if (item.InstanceId.Equals(str) && item.OS == OS)
                 {
                     return true;
                 }
