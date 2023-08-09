@@ -21,7 +21,7 @@ namespace BillingEngine.DomainModelGenerators
             var list = new List<Ec2Instance>();
             foreach (var record in list1)
             {
-                if (!list.contains(record.InstanceId))
+                if (!list.contains(record.InstanceId,record.Region))
                 {
                     list.Add(record);
                 }
@@ -34,7 +34,7 @@ namespace BillingEngine.DomainModelGenerators
         private Ec2Instance generateEc2InstanceModel(string Ec2InstanceId, List<ParsedEc2ResourceUsageEventRecord> parsedEc2ResourceUsageTypeEventRecords,
                                                     Ec2InstanceType ec2InstanceType)
         {
-            var resourceUsageEventList = _resourceUsageEvent.generateUsageList(parsedEc2ResourceUsageTypeEventRecords, Ec2InstanceId);
+            var resourceUsageEventList = _resourceUsageEvent.generateUsageList(parsedEc2ResourceUsageTypeEventRecords, Ec2InstanceId,ec2InstanceType.Region);
 
             Ec2Instance ec2Instance = new Ec2Instance(Ec2InstanceId, ec2InstanceType,ec2InstanceType.Region ,resourceUsageEventList);
             return ec2Instance;

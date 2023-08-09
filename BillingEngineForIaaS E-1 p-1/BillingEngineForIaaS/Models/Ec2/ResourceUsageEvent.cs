@@ -40,10 +40,11 @@ namespace BillingEngine.Models.Ec2
 
 
         public List<ResourceUsageEvent> generateUsageList(List<ParsedEc2ResourceUsageEventRecord> parsedEc2ResourceUsageTypeEventRecords
-                                                          , string InstanceId)
+                                                          , string InstanceId,string region)
         {
             var rc = parsedEc2ResourceUsageTypeEventRecords
                 .Where(record => record.Ec2InstanceId == InstanceId)
+                .Where(record => record.Region == region)
                 .Select(rec => generateUsage(rec.UsedFrom, rec.UsedUntil))
                 .ToList();
             return rc;

@@ -19,6 +19,7 @@ namespace BillingEngine.Billing
             var sc = distinctMonthYears
                 .Select(monthYear => GenerateBillForMonth(customer, monthYear))
                 .ToList();
+            
             return distinctMonthYears
                 .Select(monthYear => GenerateBillForMonth(customer, monthYear))
                 .ToList();
@@ -27,7 +28,10 @@ namespace BillingEngine.Billing
         private MonthlyBill GenerateBillForMonth(Customer customer, MonthYear monthYear)
         {
             var monthlyBill = new MonthlyBill(customer.CustomerId, customer.CustomerName, monthYear);
-
+            if (customer.CustomerId == "CUST005")
+            {
+                bool xyz = false;
+            }
             monthlyBill.AddMonthlyEc2Usages(customer.GetMonthlyEc2InstanceUsagesForMonth(monthYear));
 
             _discountService.ApplyDiscounts(customer, monthlyBill);

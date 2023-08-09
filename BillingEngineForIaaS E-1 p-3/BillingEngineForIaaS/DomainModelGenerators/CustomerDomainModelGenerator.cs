@@ -34,15 +34,6 @@ namespace BillingEngine.DomainModelGenerators
 
             //Generate Ec2Region instances by defining Ec2RegionDomainModelGenerator
 
-            //var sc = parsedCustomerRecords.Select(parsedCustomerRecord =>
-            //        GenerateCustomerModel(
-            //            parsedCustomerRecord,
-            //            parsedEc2ResourceUsageEventRecords.FindRecordsForCustomer(parsedCustomerRecord.CustomerId),
-            //            parsedEc2ResourceUsageReservedEventRecords.FindRecordsForCustomer(parsedCustomerRecord.CustomerId),
-            //            ec2InstanceTypes,
-            //            ec2Regions)
-            //    )
-            //    .ToList();
 
             return parsedCustomerRecords.Select(parsedCustomerRecord =>
                     GenerateCustomerModel(
@@ -70,12 +61,15 @@ namespace BillingEngine.DomainModelGenerators
                                                                                   );
 
             string customerId = (parsedCustomerRecord.CustomerId.Split('-'))[0] + (parsedCustomerRecord.CustomerId.Split('-'))[1];
+            if (customerId=="CUST005") 
+            {
+                bool xyz = false;
+            }
             Customer cs = new Customer(customerId, parsedCustomerRecord.CustomerName, Ec2Instancelist);
 
             return cs;
 
-            // Build customer object as well as associated composite objects, e.g. Ec2Instance, 
-            //throw new System.NotImplementedException();
+            // Build customer object as well as associated composite objects, e.g. Ec2Instance,
         }
     }
 }

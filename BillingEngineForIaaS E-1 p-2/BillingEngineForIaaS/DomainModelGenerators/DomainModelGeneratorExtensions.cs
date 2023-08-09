@@ -42,11 +42,11 @@ namespace BillingEngine.DomainModelGenerators
             return false;
         }
 
-        public static bool contains(this List<Ec2Instance> list, string str,string OS)
+        public static bool contains(this List<Ec2Instance> list, string str,string OS,string region)
         {
             foreach (var item in list)
             {
-                if (item.InstanceId.Equals(str) && item.OS==OS)
+                if (item.InstanceId.Equals(str) && item.OS==OS&& item.Region==region)
                 {
                     return true;
                 }

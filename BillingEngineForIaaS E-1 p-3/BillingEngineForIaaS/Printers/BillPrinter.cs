@@ -51,7 +51,6 @@ namespace BillingEngine.Printers
                           " - " + aggregatedMonthlyEc2Usage.TotalResources +
                           " - " + aggregatedMonthlyEc2Usage.TotalBilledTime +
                           " - " + aggregatedMonthlyEc2Usage.TotalUsedTime +
-                          " - " + aggregatedMonthlyEc2Usage.TotalBilledTime +
                           " - " + aggregatedMonthlyEc2Usage.TotalAmount
                           );
             Console.WriteLine(" hiii");
