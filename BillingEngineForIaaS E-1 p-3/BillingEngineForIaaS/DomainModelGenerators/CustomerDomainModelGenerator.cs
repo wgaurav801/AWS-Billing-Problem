@@ -61,10 +61,7 @@ namespace BillingEngine.DomainModelGenerators
                                                                                   );
 
             string customerId = (parsedCustomerRecord.CustomerId.Split('-'))[0] + (parsedCustomerRecord.CustomerId.Split('-'))[1];
-            if (customerId=="CUST005") 
-            {
-                bool xyz = false;
-            }
+            
             Customer cs = new Customer(customerId, parsedCustomerRecord.CustomerName, Ec2Instancelist);
 
             return cs;

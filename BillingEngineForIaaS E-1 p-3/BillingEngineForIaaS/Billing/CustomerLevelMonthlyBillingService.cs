@@ -15,10 +15,6 @@ namespace BillingEngine.Billing
         public List<MonthlyBill> GenerateMonthlyBillsForCustomer(Customer customer)
         {
             var distinctMonthYears = customer.GetDistinctMonthYears();
-
-            var sc = distinctMonthYears
-                .Select(monthYear => GenerateBillForMonth(customer, monthYear))
-                .ToList();
             
             return distinctMonthYears
                 .Select(monthYear => GenerateBillForMonth(customer, monthYear))

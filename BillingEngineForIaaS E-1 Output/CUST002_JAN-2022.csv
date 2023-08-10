@@ -1,0 +1,7 @@
+XYZ Corporation
+Bill for month of January 2022
+Total Amount: $7.812
+Total Discount: $0
+Actual Amount: $7.812
+Region,Resource Type,Total Resources,Total Used Time (HH:mm:ss),Total Billed Time (HH:mm:ss),Total Amount,Discount,Actual amount
+Asia (Delhi),t3.micro,1,744:0:0,744:0:0,$7.812,$0,$7.812

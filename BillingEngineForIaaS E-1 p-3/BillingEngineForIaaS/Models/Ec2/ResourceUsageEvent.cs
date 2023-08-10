@@ -58,7 +58,7 @@ namespace BillingEngine.Models.Ec2
                 .Where(record => record.Ec2InstanceId == InstanceId)
                 .Where(record => record.OS == OS)
                 .Where(record => record.Region== region)
-                .Select(rec => generateUsage(rec.UsedFrom, rec.UsedUntil))
+                .Select(rec => generateUsage(rec.UsedFrom, rec.UsedUntil.AddDays(1)))
                 .ToList(); ;
         }
 

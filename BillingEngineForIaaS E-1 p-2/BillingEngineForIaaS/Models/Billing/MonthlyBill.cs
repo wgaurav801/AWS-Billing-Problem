@@ -54,7 +54,14 @@ namespace BillingEngine.Models.Billing
 
                         if ((a1==a2)&&(a3==a4))
                         {
-                            fields.Add(field.Ec2InstanceId);
+                            foreach (var reso in field.Usages)
+                            {
+                                if (reso.GetBillableHours() > 0)
+                                {
+                                    fields.Add(field.Ec2InstanceId);
+
+                                }
+                            }
                         }
                     }
                     var TotalResources = fields.Count;

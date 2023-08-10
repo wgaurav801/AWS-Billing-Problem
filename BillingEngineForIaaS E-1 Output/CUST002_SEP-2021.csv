@@ -1,0 +1,7 @@
+XYZ Corporation
+Bill for month of September 2021
+Total Amount: $72.36
+Total Discount: $7.56
+Actual Amount: $64.8
+Region,Resource Type,Total Resources,Total Used Time (HH:mm:ss),Total Billed Time (HH:mm:ss),Total Amount,Discount,Actual amount
+Asia (Delhi),t3.micro,2,1440:0:0,1440:0:0,$72.36,$7.56,$64.8

@@ -1,0 +1,7 @@
+XYZ Corporation
+Bill for month of March 2021
+Total Amount: $66.96
+Total Discount: $0
+Actual Amount: $66.96
+Region,Resource Type,Total Resources,Total Used Time (HH:mm:ss),Total Billed Time (HH:mm:ss),Total Amount,Discount,Actual amount
+Asia (Delhi),t3.micro,1,744:0:0,744:0:0,$66.96,$0,$66.96

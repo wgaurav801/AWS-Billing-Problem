@@ -1,0 +1,7 @@
+XYZ Corporation
+Bill for month of August 2021
+Total Amount: $74.772
+Total Discount: $7.812
+Actual Amount: $66.96
+Region,Resource Type,Total Resources,Total Used Time (HH:mm:ss),Total Billed Time (HH:mm:ss),Total Amount,Discount,Actual amount
+Asia (Delhi),t3.micro,2,1488:0:0,1488:0:0,$74.772,$7.812,$66.96

@@ -1,0 +1,7 @@
+Mile Corporation
+Bill for month of January 2022
+Total Amount: $0.035
+Total Discount: $0
+Actual Amount: $0.035
+Region,Resource Type,Total Resources,Total Used Time (HH:mm:ss),Total Billed Time (HH:mm:ss),Total Amount,Discount,Actual amount
+Middle East,t3.xlarge,1,0:0:1,1:0:0,$0.035,$0,$0.035

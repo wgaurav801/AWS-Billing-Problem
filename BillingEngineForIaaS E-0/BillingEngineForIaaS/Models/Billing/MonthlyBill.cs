@@ -47,7 +47,14 @@ namespace BillingEngine.Models.Billing
                     {
                         if (field.Ec2InstanceType.InstanceType == rec.Ec2InstanceType.InstanceType)
                         {
-                            fields.Add(field.Ec2InstanceId);
+                            foreach (var reso in field.Usages)
+                            {
+                                if (reso.GetBillableHours() > 0)
+                                {
+                                    fields.Add(field.Ec2InstanceId);
+
+                                }
+                            }
                         }
                     }
                     var TotalResources = fields.Count;

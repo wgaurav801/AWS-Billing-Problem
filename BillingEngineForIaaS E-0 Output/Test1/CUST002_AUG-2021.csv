@@ -1,0 +1,6 @@
+XYZ Corporation
+Bill for month of AUG 2021
+Total Amount: $19.7714
+Resource Type,Total Resources,Total Used Time (HH:mm:ss),Total Billed Time (HH:mm:ss),Rate (per hour),Total Amount
+t3.medium,1,351:30:45,352:0:0,$0.0418,$14.7136
+t3.small,1,241:43:48,242:0:0,$0.0209,$5.0578

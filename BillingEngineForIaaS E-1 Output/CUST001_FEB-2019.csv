@@ -1,0 +1,7 @@
+ABC Corporation
+Bill for month of February 2019
+Total Amount: $299.712
+Total Discount: $0
+Actual Amount: $299.712
+Region,Resource Type,Total Resources,Total Used Time (HH:mm:ss),Total Billed Time (HH:mm:ss),Total Amount,Discount,Actual amount
+Asia (Delhi),t3.medium,1,672:0:0,672:0:0,$299.712,$0,$299.712

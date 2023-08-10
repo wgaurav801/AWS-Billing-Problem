@@ -1,0 +1,6 @@
+ABC Corporation
+Bill for month of AUG 2021
+Total Amount: $5.3713
+Resource Type,Total Resources,Total Used Time (HH:mm:ss),Total Billed Time (HH:mm:ss),Rate (per hour),Total Amount
+t3.medium,1,5:30:45,6:0:0,$0.0418,$0.2508
+t3.small,2,244:15:48,245:0:0,$0.0209,$5.1205
